@@ -2,13 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 import HeroSection from "../top/HeroSection.astro";
 import IntroductionSection from "../top/IntroductionSection.astro";
+import GallerySection from "../top/GallerySection.astro";
 ---
 
 <Layout title="AtoriE">
   <main>
     <HeroSection logoSrc="/AtoriE.png" backgroundImage="https://dmtuxgiexdvcwwqqkexx.supabase.co/storage/v1/object/public/Fuyudonari/fuyu_aki.png"/>
 		<IntroductionSection />
-    <section class="sec-3"></section>
+    <GallerySection />
     <section class="sec-4"></section>
   </main>
 </Layout>
@@ -26,104 +27,6 @@ import IntroductionSection from "../top/IntroductionSection.astro";
       justify-content: center;
       text-align: center;
     }
-    .sec-1 {
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      color: white;
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        pointer-events: none;
-        z-index: 1;
-      }
-    }
-    .sec-2 {
-      .title {
-        font-size: 2rem;
-        margin-bottom: 3rem;
-      }
-    }
-    .sec-3 {
-      background-color: #000;
-    }
-
-    /* ロゴのスタイル */
-    .logo {
-      z-index: 2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .type {
-      position: absolute;
-      bottom: 100px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      a {
-        display: inline-block;
-        position: relative;
-        bottom: 0;
-        z-index: 2;
-        padding: 10px 10px 110px;
-        color: #fff;
-        font-size: 20px;
-        line-height: 1;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        text-decoration: none;
-        transition: 0.2s;
-        overflow: hidden;
-        
-        /* アニメーション用の::after */
-        &::after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          top: 50px;
-          left: 50%;
-          width: 1px;
-          height: 400px;
-          background: #fff;
-        }
-
-        &:hover {
-          opacity: 0.5;
-        }
-      }
-    }
-  }
-
-  /* アニメーションの設定を外部に配置 */
-  #type03 a::after {
-    animation: sdl03 2s cubic-bezier(1, 0, 0, 1) infinite;
-  }
-
-  /* キーフレーム定義 */
-  @keyframes sdl03 {
-    0% {
-      transform: scale(1, 0);
-      transform-origin: 0 0;
-    }
-    30% {
-      transform: scale(1, 1);
-      transform-origin: 0 0;
-    }
-    70% {
-      transform: scale(1, 1);
-      transform-origin: 0 100%;
-    }
-    100% {
-      transform: scale(1, 0);
-      transform-origin: 0 100%;
-    }
-  }
+	}
 </style>
 

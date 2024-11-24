@@ -1,0 +1,60 @@
+---
+import Title from "../components/Title.astro";
+import GalleryCard from "../components/GalleryCard.astro";
+
+const cards = [
+  {
+    title: "冬隣（一次創作）",
+    link: "",
+    image:
+      "https://dmtuxgiexdvcwwqqkexx.supabase.co/storage/v1/object/public/Fuyudonari/fuyu_natsu.png",
+  },
+  {
+    title: "その他（一次創作）",
+    link: "",
+    image:
+      "https://dmtuxgiexdvcwwqqkexx.supabase.co/storage/v1/object/public/Fuyudonari/kkt.png",
+  },
+  {
+    title: "TRPG立ち絵",
+    link: "",
+    image:
+      "https://dmtuxgiexdvcwwqqkexx.supabase.co/storage/v1/object/public/Fuyudonari/fuyu_umi.png",
+  },
+  {
+    title: "その他（二次創作など）",
+    link: "",
+    image:
+      "https://dmtuxgiexdvcwwqqkexx.supabase.co/storage/v1/object/public/Fuyudonari/fuyu_te.png",
+  },
+];
+---
+
+<section class="sec-3">
+  <Title title="Gallery" color="white" />
+  <div class="gallery-cards">
+    {
+      cards.map((card) => (
+        <GalleryCard title={card.title} link={card.link} image={card.image} />
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .sec-3 {
+    background-color: #000;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+
+    .gallery-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 600px);
+      gap: 2rem;
+      padding: 1rem;
+      margin: 0 auto;
+      max-width: 80%;
+    }
+  }
+</style>

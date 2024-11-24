@@ -1,0 +1,74 @@
+---
+interface Props {
+  image: string;
+  title: string;
+  link: string;
+}
+
+const { image, title, link } = Astro.props;
+---
+
+<li class="link-card" style={`background-image: url(${image});`}>
+  <a href={link}>
+    <div class="overlay"></div>
+    <span class="title">{title}</span>
+  </a>
+</li>
+<style>
+  .link-card {
+    list-style: none;
+    width: 600px;
+    height: 300px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden; /* 子要素がカード外に出ないように */
+    background-size: cover; /* 画像を全体に表示 */
+    background-position: center; /* 画像を中央に配置 */
+    background-repeat: no-repeat; /* 繰り返しを無効化 */
+  }
+
+  .link-card a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* オーバーレイ */
+  .link-card .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0); /* 初期状態は透明 */
+    transition: background-color 0.3s ease;
+    z-index: 1;
+  }
+
+  /* タイトル */
+  .link-card .title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0; /* 初期状態では非表示 */
+    transition: opacity 0.3s ease;
+    z-index: 2;
+  }
+
+  /* ホバー */
+  .link-card:hover .overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .link-card:hover .title {
+    opacity: 1;
+  }
+</style>
