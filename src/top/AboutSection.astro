@@ -1,0 +1,54 @@
+---
+import Title from "../components/Title.astro";
+---
+
+<section class="sec-4">
+  <Title title="About" color="black" />
+  <div class="content">
+    <p>
+      冬隣あとり / Fuyudonari Atori<br />
+      <br />
+      「表現に生きて表現に死ぬ」<br />
+      言葉、音楽、絵、映像、創作。全ての表現を愛する表現者。<br />
+      あと秋も好き。<br />
+      普段は、映像制作のためにイラストを描いたり、オリジナルキャラクターや創作の子たちを描いたりしています。<br />
+      映像は「融光華/yukoge」という名前で活動（予定）。<br />
+      <br />
+      趣味程度のイラストでしたが、ちゃんと表現したいものを表現したいと考え始めています。<br />
+      まだまだ拙さは残りますが、少しずつでも成長していけたらと思っているので、あたたかく見守ってください。<br />
+    </p>
+    <img
+      src="https://dmtuxgiexdvcwwqqkexx.supabase.co/storage/v1/object/public/Fuyudonari/fuyu_natsu.png"
+      alt="冬隣あとり"
+    />
+  </div>
+</section>
+
+<style>
+  .sec-4 {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background-color: #fff;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    .content {
+      display: grid;
+      grid-template-columns: 500px 500px;
+      gap: 4rem;
+      margin: 0 auto;
+      width: 1000px;
+      align-items: center;
+      img {
+        width: 400px;
+        height: 400px;
+        overflow: hidden; /* 子要素がカード外に出ないように */
+        object-fit: cover;
+      }
+    }
+  }
+</style>
