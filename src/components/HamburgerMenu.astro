@@ -1,0 +1,112 @@
+---
+---
+
+<div class="plate plate5">
+  <svg
+    class="burger"
+    version="1.1"
+    height="100"
+    width="100"
+    viewBox="0 0 100 100"
+  >
+    <path class="line line1" d="M 30,35 H 70 "></path>
+    <path class="line line2" d="M 50,50 H 30 L 34,32"></path>
+    <path class="line line3" d="M 50,50 H 70 L 66,68"></path>
+    <path class="line line4" d="M 30,65 H 70 "></path>
+  </svg>
+  <svg class="x" version="1.1" height="100" width="100" viewBox="0 0 100 100">
+    <path class="line" d="M 34,32 L 66,68"></path>
+    <path class="line" d="M 66,32 L 34,68"></path>
+  </svg>
+</div>
+
+
+<style>
+
+/* Common Css must add */
+svg {
+  height: 40px;
+  position: absolute;
+  width: 40px;
+  cursor: pointer;
+  /*   border: 1px solid black; */
+}
+
+.plate {
+  height: 41px;
+  width: 41px;
+}
+.burger {
+  filter: url(#gooeyness);
+}
+.x {
+  transform: scale(0);
+  transition: transform 400ms;
+}
+.line {
+  fill: none;
+  stroke: white;
+  stroke-width: 6px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform-origin: 50%;
+  transition: stroke-dasharray 500ms 200ms, stroke-dashoffset 500ms 200ms,
+    transform 500ms 200ms;
+}
+.x .line {
+  stroke-width: 5.5px;
+}
+/* Common Css must add end */
+
+
+
+/* Fifth Menu Css */
+.plate5 .line {
+  transition: stroke-dasharray 400ms 100ms, stroke-dashoffset 400ms 100ms,
+    transform 400ms 100ms;
+}
+.plate5 .line1 {
+  stroke-dasharray: 40 40;
+}
+.plate5 .line2 {
+  stroke-dasharray: 21 39;
+}
+.plate5 .line3 {
+  stroke-dasharray: 21 39;
+}
+.plate5 .line4 {
+  stroke-dasharray: 40 40;
+}
+.plate5 .x {
+  transition: transform 400ms 50ms;
+}
+
+.active.plate5 .line {
+  transition: stroke-dasharray 400ms, stroke-dashoffset 400ms, transform 400ms;
+}
+.active.plate5 .line1 {
+  stroke-dasharray: 1 40;
+  stroke-dashoffset: -33px;
+}
+.active.plate5 .line2 {
+  stroke-dasharray: 5 39;
+  stroke-dashoffset: -37px;
+}
+.active.plate5 .line3 {
+  stroke-dasharray: 5 39;
+  stroke-dashoffset: -37px;
+}
+.active.plate5 .line4 {
+  stroke-dasharray: 1 40;
+  stroke-dashoffset: -33px;
+}
+.active.plate5 .x {
+  transition: transform 400ms 50ms;
+}
+
+.active .x {
+  transform: scale(1);
+  transition: transform 400ms 350ms;
+}
+/* Fifth Menu Css end */
+</style>
