@@ -1,0 +1,68 @@
+---
+import GalleryLayout from "../../../layouts/GalleryLayout.astro";
+import { supabase } from "../../../lib/supabase";
+
+export async function getStaticPaths() {
+  const { data, error } = await supabase.from("images").select("id, category");
+
+  if (error) {
+    console.error("Error fetching paths:", error.message);
+    return [];
+  }
+
+  // ログで確認
+  console.log("Generated paths:", data);
+
+  const paths = data.map((item) => ({
+    params: {
+      category: item.category,
+      id: item.id,
+    },
+  }));
+
+  return paths;
+}
+
+// URLパラメータからカテゴリとIDを取得
+const { category, id } = Astro.params;
+let item = {};
+
+try {
+  const { data, error } = await supabase
+    .from("images")
+    .select("*")
+    .eq("id", id)
+    .single(); // 特定の画像データを取得
+
+  if (error) throw error;
+  item = data;
+} catch (error) {
+  console.error("Error fetching image details:", error.message);
+}
+---
+
+<GalleryLayout title={category}>
+  <div class="contents">
+    <img src={item.image_url} alt={item.title} />
+    <p>{item.description}</p>
+    <a href={`/gallery/${category}`}>Back to {category} Gallery</a>
+  </div>
+</GalleryLayout>
+
+<style>
+  .contents {
+    margin-top: 200px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    img {
+      max-width: 80%;
+      max-height: 60%;
+    }
+    p {
+      margin-top: 300px;
+    }
+  }
+</style>

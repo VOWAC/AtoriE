@@ -1,0 +1,119 @@
+---
+const { category } = Astro.params;
+
+import Footer from "../../components/Footer.astro";
+import GalleryLayout from "../../layouts/GalleryLayout.astro";
+import { supabase } from "../../lib/supabase";
+
+let items = [];
+
+try {
+  const { data, error } = await supabase
+    .from("images")
+    .select("*")
+    .eq("category", category);
+
+  if (error) throw error;
+
+  items = data;
+} catch (error) {
+  // console.error("Error fetching gallery items:", error.message);
+}
+
+
+---
+
+<GalleryLayout title={category}>
+  <div class="contents">
+    <h1 class="title">{category}</h1>
+    <div class="gallery">
+      {
+        items.map((item) => (
+          <div class="gallery-item">
+             <a href={`/Gallery/${category}/${item.id}`}>
+              <img src={item.image_url} alt={item.title} />
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <Footer />
+</GalleryLayout>
+
+<style>
+  .contents {
+    margin: 120px auto;
+    width: 80%;
+    .title {
+      font-size: 2rem;
+      margin-bottom: 36px;
+      color: #fff;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      grid-auto-rows: 5px;
+      gap: 10px;
+      width: 80%;
+      margin: 0 auto;
+      .gallery-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 24px;
+        position: relative;
+        width: 100%;
+        height: auto;
+
+        img {
+          width: 102%;
+          height: 100%;
+          object-fit: cover;
+          transform: scale(1);
+          transition: transform 0.3s ease;
+          &:hover {
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<!-- メイソンレイアウト -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const grid = document.querySelector(".gallery");
+
+    const updateLayout = () => {
+      const items = document.querySelectorAll(".gallery-item");
+
+      items.forEach((item) => {
+        const rowHeight = parseInt(
+          window.getComputedStyle(grid).getPropertyValue("grid-auto-rows")
+        );
+        const rowGap = parseInt(
+          window.getComputedStyle(grid).getPropertyValue("gap")
+        );
+        const itemHeight = item
+          .querySelector("img")
+          .getBoundingClientRect().height;
+
+        // 高さを基に行のスパンを計算
+        const rowSpan = Math.ceil((itemHeight + rowGap) / (rowHeight + rowGap));
+        item.style.gridRowEnd = `span ${rowSpan}`;
+      });
+    };
+
+    // 初回レイアウト更新
+    updateLayout();
+
+    // 画像がロードされたときに再計算
+    const images = document.querySelectorAll(".gallery-item img");
+    images.forEach((img) => {
+      img.addEventListener("load", updateLayout);
+    });
+  });
+</script>
