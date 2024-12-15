@@ -1,0 +1,25 @@
+---
+import 'locomotive-scroll/dist/locomotive-scroll.css';
+---
+
+<div id="scroll-container" data-scroll-container>
+  <slot />
+</div>
+
+<script>
+  import LocomotiveScroll from 'locomotive-scroll';
+
+  // ページ読み込み後に初期化
+  document.addEventListener('DOMContentLoaded', () => {
+    const scroll = new LocomotiveScroll({
+      el: document.querySelector('#scroll-container'), // スクロールコンテナ
+      smooth: true, // 滑らかなスクロール
+      lerp: 0.1,    // 慣性の強さ (0〜1で調整)
+    });
+
+    // ページを離れるときに破棄
+    window.addEventListener('beforeunload', () => {
+      scroll.destroy();
+    });
+  });
+</script>
