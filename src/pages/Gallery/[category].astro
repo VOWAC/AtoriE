@@ -19,8 +19,6 @@ try {
 } catch (error) {
   // console.error("Error fetching gallery items:", error.message);
 }
-
-
 ---
 
 <GalleryLayout title={category}>
@@ -30,7 +28,7 @@ try {
       {
         items.map((item) => (
           <div class="gallery-item">
-             <a href={`/Gallery/${category}/${item.id}`}>
+            <a href={`/Gallery/${category}/${item.id}`}>
               <img src={item.image_url} alt={item.title} />
             </a>
           </div>
@@ -38,6 +36,7 @@ try {
       }
     </div>
   </div>
+  <a href="/" class="back"><span>トップページ</span>へ戻る</a>
   <Footer />
 </GalleryLayout>
 
@@ -80,9 +79,28 @@ try {
       }
     }
   }
+  .back {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    background-color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    span {
+      text-decoration: underline;
+    }
+    &:hover {
+      background-color: #555;
+    }
+  }
 </style>
 
-<!-- メイソンレイアウト -->
+<!-- メイソンリーレイアウト -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const grid = document.querySelector(".gallery");
