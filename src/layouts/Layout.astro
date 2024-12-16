@@ -1,5 +1,5 @@
 ---
-import SmoothScroll from '../components/SmoothScroll.astro';
+import SmoothScroll from "../components/SmoothScroll.astro";
 
 interface Props {
   title: string;
@@ -19,9 +19,15 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-		<SmoothScroll>
-    <slot />
-	</SmoothScroll>
+    <script>
+      // ページがロードされたらクラスを追加
+      window.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.add("loaded");
+      });
+    </script>
+    <SmoothScroll>
+      <slot />
+    </SmoothScroll>
   </body>
 </html>
 <style is:global>
@@ -57,5 +63,15 @@ const { title } = Astro.props;
   code {
     font-family: "Yu Mincho", "Hiragino Mincho Pro", "MS PMincho", "MS Mincho",
       serif;
+  }
+  /* ページの初期状態を非表示に */
+  body {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  /* ページ読み込み後、表示する */
+  body.loaded {
+    opacity: 1;
   }
 </style>

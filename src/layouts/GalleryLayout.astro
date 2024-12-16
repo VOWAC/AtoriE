@@ -1,6 +1,6 @@
 ---
-import Header from '../components/Header.astro';
-import SmoothScroll from '../components/SmoothScroll.astro';
+import Header from "../components/Header.astro";
+import SmoothScroll from "../components/SmoothScroll.astro";
 
 interface Props {
   title: string;
@@ -21,9 +21,15 @@ const { title } = Astro.props;
   </head>
   <body>
     <Header />
+    <script>
+      // ページがロードされたらクラスを追加
+      window.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.add("loaded");
+      });
+    </script>
     <SmoothScroll>
-    <slot />
-  </SmoothScroll>
+      <slot />
+    </SmoothScroll>
   </body>
 </html>
 <style is:global>
@@ -61,4 +67,18 @@ const { title } = Astro.props;
     font-family: "Yu Mincho", "Hiragino Mincho Pro", "MS PMincho", "MS Mincho",
       serif;
   }
+  header, header *{
+    opacity: 1 !important; /* 常に表示状態 */
+    transition: none !important; /* トランジション効果を無効化 */
+  }
+  /* ページの初期状態を非表示に */
+  main {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  /* ページ読み込み後、表示する */
+  body.loaded main {
+  opacity: 1;
+}
 </style>

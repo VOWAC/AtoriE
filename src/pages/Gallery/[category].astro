@@ -22,22 +22,24 @@ try {
 ---
 
 <GalleryLayout title={category}>
-  <div class="contents">
-    <h1 class="title">{category}</h1>
-    <div class="gallery">
-      {
-        items.map((item) => (
-          <div class="gallery-item">
-            <a href={`/Gallery/${category}/${item.id}`}>
-              <img src={item.image_url} alt={item.title} />
-            </a>
-          </div>
-        ))
-      }
+  <main>
+    <div class="contents">
+      <h1 class="title">{category}</h1>
+      <div class="gallery">
+        {
+          items.map((item) => (
+            <div class="gallery-item">
+              <a href={`/Gallery/${category}/${item.id}`}>
+                <img src={item.image_url} alt={item.title} />
+              </a>
+            </div>
+          ))
+        }
+      </div>
     </div>
-  </div>
-  <a href="/" class="back"><span>トップページ</span>へ戻る</a>
-  <Footer />
+    <a href="/" class="back"><span>トップページ</span>へ戻る</a>
+    <Footer />
+  </main>
 </GalleryLayout>
 
 <style>

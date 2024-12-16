@@ -65,35 +65,39 @@ try {
 ---
 
 <GalleryLayout title={category}>
-  <div class="contents">
-    <div class="image-slider">
-      <div class={`arrow ${previous ? "" : "hidden"}`}>
-        {
-          previous && (
-            <a href={`/Gallery/${category}/${previous.id}`}>
-              <img src="/arrow_left.png" alt="Previous" />
-            </a>
-          )
-        }
+  <main>
+    <div class="contents">
+      <div class="image-slider">
+        <div class={`arrow ${previous ? "" : "hidden"}`}>
+          {
+            previous && (
+              <a href={`/Gallery/${category}/${previous.id}`}>
+                <img src="/arrow_left.png" alt="Previous" />
+              </a>
+            )
+          }
+        </div>
+        <img src={item.image_url} alt={item.title} class="image" />
+        <div class={`arrow ${next ? "" : "hidden"}`}>
+          {
+            next && (
+              <a href={`/Gallery/${category}/${next.id}`}>
+                <img src="/arrow_right.png" alt="Next" />
+              </a>
+            )
+          }
+        </div>
       </div>
-      <img src={item.image_url} alt={item.title} class="image" />
-      <div class={`arrow ${next ? "" : "hidden"}`}>
-        {
-          next && (
-            <a href={`/Gallery/${category}/${next.id}`}>
-              <img src="/arrow_right.png" alt="Next" />
-            </a>
-          )
-        }
+      <div class="description">
+        <h2 class={`title ${item.title ? "" : "hidden"}`}>{item.title}</h2>
+        <p class={`${item.description ? "" : "hidden"}`}>{item.description}</p>
       </div>
-    </div>
-    <div class="description">
-      <h2 class={`title ${item.title ? "" : "hidden"}`}>{item.title}</h2>
-      <p class={`${item.description ? "" : "hidden"}`}>{item.description}</p>
-    </div>
 
-    <a href={`/Gallery/${category}`} class="back"><span>{category}</span>へ戻る</a>
-  </div>
+      <a href={`/Gallery/${category}`} class="back"
+        ><span>{category}</span>へ戻る</a
+      >
+    </div>
+  </main>
 </GalleryLayout>
 
 <style>
@@ -143,13 +147,13 @@ try {
       }
       p {
         font-size: 1rem;
-        padding: 1.0rem;
+        padding: 1rem;
       }
       .hidden {
-          visibility: hidden; /* 要素は非表示だが、スペースを確保 */
-        }
+        visibility: hidden; /* 要素は非表示だが、スペースを確保 */
+      }
     }
-    .back{
+    .back {
       margin-top: 50px;
       color: #fff;
       text-decoration: none;
