@@ -2,6 +2,7 @@
 const { category } = Astro.params;
 
 import Button from "../../components/Button.astro";
+import Galleries from "../../components/Galleries.astro";
 import GalleryLayout from "../../layouts/GalleryLayout.astro";
 import { supabase } from "../../lib/supabase";
 
@@ -24,8 +25,7 @@ try {
 <GalleryLayout title={category}>
   <main>
     <div class="contents">
-    
-      <h1 class="title" style={'font-size:20px'}>{category}</h1>
+      <h1 class="category_title" style={'font-size:20px'}>{category}</h1>
       <div class="gallery">
         {
           items.map((item) => (
@@ -41,13 +41,14 @@ try {
     <div class="back-button">
       <Button link="トップページ" text="に戻る" />
     </div>
+    <Galleries currentCategory={category}/>
   </main>
 </GalleryLayout>
 
 <style>
   main {
     padding: 120px 0;
-    .title{
+    .category_title{
       color: #fff;
       padding: 1rem 1.5rem;
       background-color: #000;
@@ -63,6 +64,7 @@ try {
         color: #fff;
       }
       .gallery {
+        padding-top: 40px;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         grid-auto-rows: 5px;
