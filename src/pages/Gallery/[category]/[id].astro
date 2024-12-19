@@ -1,6 +1,7 @@
 ---
 import GalleryLayout from "../../../layouts/GalleryLayout.astro";
 import { supabase } from "../../../lib/supabase";
+import Button from "../../../components/Button.astro";
 
 export async function getStaticPaths() {
   const { data, error } = await supabase.from("images").select("id, category");
@@ -93,9 +94,7 @@ try {
         <p class={`${item.description ? "" : "hidden"}`}>{item.description}</p>
       </div>
 
-      <a href={`/Gallery/${category}`} class="back"
-        ><span>{category}</span>へ戻る</a
-      >
+      <Button link={category} text="に戻る" />
     </div>
   </main>
 </GalleryLayout>
@@ -153,20 +152,6 @@ try {
         visibility: hidden; /* 要素は非表示だが、スペースを確保 */
       }
     }
-    .back {
-      margin-top: 50px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 1rem;
-      background-color: #333;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      span {
-        text-decoration: underline;
-      }
-      &:hover {
-        background-color: #555;
-      }
-    }
+    
   }
 </style>
