@@ -1,13 +1,13 @@
 ---
 export interface Props {
   logoSrc: string;
-  backgroundImage: string;
+  // backgroundImage: string;
 }
 
-const { logoSrc, backgroundImage } = Astro.props;
+const { logoSrc } = Astro.props;
 ---
 
-<section class="sec-1" style={`background-image: url(${backgroundImage});`}>
+<section class="sec-1">
   <img src={logoSrc} alt="Logo" class="logo" />
   <div class="scroll-indicator" id="next-section">
     <p>Scroll</p>
@@ -19,10 +19,12 @@ const { logoSrc, backgroundImage } = Astro.props;
     position: relative;
     height: 100vh;
     width: 100vw;
+    background-image: url("https://dmtuxgiexdvcwwqqkexx.supabase.co/storage/v1/object/public/Fuyudonari/fuyu_aki.png");
     background-size: cover; /* 画像を全体に表示 */
     background-position: center; /* 画像を中央に配置 */
     background-repeat: no-repeat; /* 繰り返しを無効化 */
     color: white;
+    /* overflow: hidden; */
     &::before {
       content: "";
       position: absolute;
@@ -35,7 +37,12 @@ const { logoSrc, backgroundImage } = Astro.props;
       z-index: 1;
     }
   }
-
+  /* レスポンシブ時に背景を回転 */
+  @media (max-width: 768px) {
+    .sec-1 {
+      background-image: url("/top_mobile.png");
+    }
+  }
   .logo {
     z-index: 2;
     display: flex;
@@ -44,41 +51,40 @@ const { logoSrc, backgroundImage } = Astro.props;
   }
 
   .scroll-indicator {
-  position: absolute;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-
-  p {
-    display: inline-block;
-    position: relative;
-    bottom: 0;
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 2;
-    padding: 10px 10px 150px;
-    color: #fff;
-    font-size: 20px;
-    line-height: 1;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: 0.2s;
-    overflow: hidden;
 
-    &::after {
-      content: "";
-      position: absolute;
+    p {
+      display: inline-block;
+      position: relative;
       bottom: 0;
-      top: 50px;
-      left: 50%;
-      width: 1px;
-      height: 800px;
-      background: #fff;
-      animation: sdl03 2s cubic-bezier(1, 0, 0, 1) infinite;
+      z-index: 2;
+      padding: 10px 10px 150px;
+      color: #fff;
+      font-size: 20px;
+      line-height: 1;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: 0.2s;
+      overflow: hidden;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        top: 50px;
+        left: 50%;
+        width: 1px;
+        height: 800px;
+        background: #fff;
+        animation: sdl03 2s cubic-bezier(1, 0, 0, 1) infinite;
+      }
     }
   }
-}
-
 
   @keyframes sdl03 {
     0% {
