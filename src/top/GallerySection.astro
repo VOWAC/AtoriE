@@ -66,11 +66,9 @@ try {
         <GalleryCard title={card.title} link={card.link} image={card.image} />
       ))
     } -->
-    <ul>
       {categories.map(category => (
         <GalleryCard title={category.category} link={`/Gallery/${category.category}`} image={category.image_url} />
       ))}
-    </ul>
   </div>
 </section>
 
