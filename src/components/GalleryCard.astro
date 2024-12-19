@@ -27,6 +27,20 @@ const { image, title, link } = Astro.props;
     background-repeat: no-repeat; /* 繰り返しを無効化 */
   }
 
+  @media (max-width: 1280px) {
+    .link-card {
+      width: 400px;
+      height: 200px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .link-card {
+      width: 300px;
+      height: 150px;
+    }
+  }
+
   .link-card a {
     display: block;
     width: 100%;

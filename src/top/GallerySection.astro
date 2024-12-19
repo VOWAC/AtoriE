@@ -30,7 +30,7 @@ import { supabase } from "../lib/supabase";
 //   },
 // ];
 
-let categories:any[] = [];
+let categories: any[] = [];
 try {
   const { data, error } = await supabase
     .from("images")
@@ -47,15 +47,15 @@ try {
     }
   });
 
-  categories = Array.from(uniqueCategories.entries()).map(([category, image_url]) => ({
-    category,
-    image_url,
-  }));
+  categories = Array.from(uniqueCategories.entries()).map(
+    ([category, image_url]) => ({
+      category,
+      image_url,
+    })
+  );
 } catch (error) {
   // console.error("Error fetching categories:", error.message);
 }
-
-
 ---
 
 <section class="sec-3">
@@ -66,9 +66,15 @@ try {
         <GalleryCard title={card.title} link={card.link} image={card.image} />
       ))
     } -->
-      {categories.map(category => (
-        <GalleryCard title={category.category} link={`/Gallery/${category.category}`} image={category.image_url} />
-      ))}
+    {
+      categories.map((category) => (
+        <GalleryCard
+          title={category.category}
+          link={`/Gallery/${category.category}`}
+          image={category.image_url}
+        />
+      ))
+    }
   </div>
 </section>
 
@@ -76,7 +82,7 @@ try {
   .sec-3 {
     background-color: #000;
     position: relative;
-    height: 100vh;
+    /* height: 100vh; */
     width: 100vw;
 
     .gallery-cards {
@@ -86,6 +92,24 @@ try {
       padding: 1rem;
       margin: 0 auto;
       max-width: 80%;
+      
     }
+    @media (max-width: 1280px) {
+        .gallery-cards {
+          grid-template-columns: repeat(2, 400px);
+          margin-top: 120px;
+          gap: 1.5rem;
+        }
+      }
+    @media (max-width: 936px) {
+      height: fit-content;
+        .gallery-cards {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1.5rem;
+          margin-bottom: 100px;
+        }
+      }
   }
 </style>
