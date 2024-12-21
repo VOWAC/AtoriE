@@ -1,7 +1,7 @@
 ---
-import GalleryLayout from "../../../layouts/GalleryLayout.astro";
-import { supabase } from "../../../lib/supabase";
-import Button from "../../../components/Button.astro";
+import GalleryLayout from "@layouts/GalleryLayout.astro";
+import { supabase } from "@lib/supabase";
+import Button from "@components/Button.astro";
 
 export async function getStaticPaths() {
   const { data, error } = await supabase.from("images").select("id, category");

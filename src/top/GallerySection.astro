@@ -1,34 +1,8 @@
 ---
-import Title from "../components/Title.astro";
-import GalleryCard from "../components/GalleryCard.astro";
-import { supabase } from "../lib/supabase";
+import Title from "@components/Title.astro";
+import GalleryCard from "@components/GalleryCard.astro";
+import { supabase } from "@lib/supabase";
 
-// const cards = [
-//   {
-//     title: "冬隣（一次創作）",
-//     link: "",
-//     image:
-//       "https://dmtuxgiexdvcwwqqkexx.supabase.co/storage/v1/object/public/Fuyudonari/fuyu_natsu.png",
-//   },
-//   {
-//     title: "その他（一次創作）",
-//     link: "",
-//     image:
-//       "https://dmtuxgiexdvcwwqqkexx.supabase.co/storage/v1/object/public/Fuyudonari/kkt.png",
-//   },
-//   {
-//     title: "TRPG立ち絵",
-//     link: "",
-//     image:
-//       "https://dmtuxgiexdvcwwqqkexx.supabase.co/storage/v1/object/public/Fuyudonari/fuyu_umi.png",
-//   },
-//   {
-//     title: "その他（二次創作など）",
-//     link: "",
-//     image:
-//       "https://dmtuxgiexdvcwwqqkexx.supabase.co/storage/v1/object/public/Fuyudonari/fuyu_te.png",
-//   },
-// ];
 
 let categories: any[] = [];
 try {
