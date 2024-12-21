@@ -82,34 +82,35 @@ try {
   .sec-3 {
     background-color: #000;
     position: relative;
+    height: fit-content;
     /* height: 100vh; */
     width: 100vw;
+    padding: 200px 0;
 
     .gallery-cards {
       display: grid;
       grid-template-columns: repeat(2, 600px);
       gap: 2rem;
-      padding: 1rem;
+      margin-top: 200px;
       margin: 0 auto;
       max-width: 80%;
-      
     }
-    @media (max-width: 1280px) {
-        .gallery-cards {
-          grid-template-columns: repeat(2, 400px);
-          margin-top: 120px;
-          gap: 1.5rem;
-        }
+    @media (max-width: 1340px) {
+      .gallery-cards {
+        grid-template-columns: repeat(2, 400px);
+        margin-top: 120px;
+        gap: 1.5rem;
       }
+    }
     @media (max-width: 936px) {
-      height: fit-content;
-        .gallery-cards {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 1.5rem;
-          margin-bottom: 100px;
-        }
+      padding:0;
+      .gallery-cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 100px;
       }
+    }
   }
 </style>

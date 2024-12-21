@@ -2,13 +2,13 @@
 interface Props {
   link: string;
   text: string;
+  src: string;
 }
 
-const { link, text } = Astro.props;
+const { link, text,src } = Astro.props;
 ---
 
-<!-- <p>{text}</p> -->
-<a href="/" class="back">
+<a href=`${src}` class="back">
   <span>
     {link}
   </span>

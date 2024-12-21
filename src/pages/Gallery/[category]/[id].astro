@@ -64,8 +64,7 @@ try {
   console.error("Error fetching image details:", error.message);
 }
 
-const htmlContent = item.description || ""; 
-
+const htmlContent = item.description || "";
 ---
 
 <GalleryLayout title={category}>
@@ -94,11 +93,13 @@ const htmlContent = item.description || "";
       </div>
       <div class="description">
         <h2 class={`title ${item.title ? "" : "hidden"}`}>{item.title}</h2>
-        <p class={`${item.description ? "" : "hidden"}`} set:html={htmlContent}></p>
+        <p
+          class={`${item.description ? "" : "hidden"}`}
+          set:html={htmlContent}
+        />
       </div>
-
-      <Button link={category} text="に戻る" />
     </div>
+    <Button link={category} text="に戻る" src=`/Gallery/${category}` />
   </main>
 </GalleryLayout>
 
@@ -155,6 +156,8 @@ const htmlContent = item.description || "";
         visibility: hidden; /* 要素は非表示だが、スペースを確保 */
       }
     }
-    
+  }
+  .back-button-wrapper {
+      margin: 300px 0;
   }
 </style>
