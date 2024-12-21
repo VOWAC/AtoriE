@@ -63,6 +63,9 @@ try {
 } catch (error) {
   console.error("Error fetching image details:", error.message);
 }
+
+const htmlContent = item.description || ""; 
+
 ---
 
 <GalleryLayout title={category}>
@@ -91,7 +94,7 @@ try {
       </div>
       <div class="description">
         <h2 class={`title ${item.title ? "" : "hidden"}`}>{item.title}</h2>
-        <p class={`${item.description ? "" : "hidden"}`}>{item.description}</p>
+        <p class={`${item.description ? "" : "hidden"}`} set:html={htmlContent}></p>
       </div>
 
       <Button link={category} text="に戻る" />

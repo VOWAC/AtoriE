@@ -20,6 +20,10 @@ try {
 } catch (error) {
   // console.error("Error fetching gallery items:", error.message);
 }
+
+const sortedItems = items.sort((a, b) => {
+  return new Date(a.created_at) - new Date(b.created_at); // 日付でソート
+});
 ---
 
 <GalleryLayout title={category}>
@@ -28,7 +32,7 @@ try {
       <h1 class="category_title" style={"font-size:20px"}>{category}</h1>
       <div class="gallery">
         {
-          items.map((item) => (
+          sortedItems.map((item) => (
             <div class="gallery-item">
               <a href={`/Gallery/${category}/${item.id}`}>
                 <img src={item.image_url} alt={item.title} />
@@ -44,6 +48,7 @@ try {
     <Galleries currentCategory={category} />
   </main>
 </GalleryLayout>
+
 
 <style>
   main {
