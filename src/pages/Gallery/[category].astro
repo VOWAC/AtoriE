@@ -25,7 +25,7 @@ try {
 <GalleryLayout title={category}>
   <main>
     <div class="contents">
-      <h1 class="category_title" style={'font-size:20px'}>{category}</h1>
+      <h1 class="category_title" style={"font-size:20px"}>{category}</h1>
       <div class="gallery">
         {
           items.map((item) => (
@@ -41,14 +41,14 @@ try {
     <div class="back-button">
       <Button link="トップページ" text="に戻る" />
     </div>
-    <Galleries currentCategory={category}/>
+    <Galleries currentCategory={category} />
   </main>
 </GalleryLayout>
 
 <style>
   main {
     padding: 120px 0;
-    .category_title{
+    .category_title {
       color: #fff;
       padding: 1rem 1.5rem;
       background-color: #000;
@@ -66,7 +66,7 @@ try {
       .gallery {
         padding-top: 40px;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         grid-auto-rows: 5px;
         gap: 10px;
         width: 80%;
@@ -90,6 +90,11 @@ try {
             &:hover {
               transform: scale(1.05);
             }
+          }
+        }
+        @media (max-width: 830px) {
+          .galleries {
+            grid-template-columns:  repeat(auto-fill, minmax(150px, 1fr));
           }
         }
       }
