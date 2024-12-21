@@ -1,0 +1,90 @@
+---
+import Title from "@components/Title.astro";
+import GalleryCard from "@components/GalleryCard.astro";
+import { supabase } from "@lib/supabase";
+
+
+let categories: any[] = [];
+try {
+  const { data, error } = await supabase
+    .from("images")
+    .select("category, image_url, created_at")
+    .order("category", { ascending: true })
+    .order("created_at", { ascending: true });
+  if (error) throw error;
+
+  // カテゴリーごとの最初の画像のみ取得
+  const uniqueCategories = new Map();
+  data.forEach((item) => {
+    if (!uniqueCategories.has(item.category)) {
+      uniqueCategories.set(item.category, item.image_url);
+    }
+  });
+
+  categories = Array.from(uniqueCategories.entries()).map(
+    ([category, image_url]) => ({
+      category,
+      image_url,
+    })
+  );
+} catch (error) {
+  // console.error("Error fetching categories:", error.message);
+}
+---
+
+<section class="sec-3">
+  <Title title="Gallery" color="white" />
+  <div class="gallery-cards">
+    <!-- {
+      cards.map((card) => (
+        <GalleryCard title={card.title} link={card.link} image={card.image} />
+      ))
+    } -->
+    {
+      categories.map((category) => (
+        <GalleryCard
+          title={category.category}
+          link={`/Gallery/${category.category}`}
+          image={category.image_url}
+        />
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .sec-3 {
+    background-color: #000;
+    position: relative;
+    height: fit-content;
+    /* height: 100vh; */
+    width: 100vw;
+    padding: 200px 0;
+
+    .gallery-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 600px);
+      gap: 2rem;
+      margin-top: 200px;
+      margin: 0 auto;
+      max-width: 80%;
+    }
+    @media (max-width: 1340px) {
+      .gallery-cards {
+        grid-template-columns: repeat(2, 400px);
+        margin-top: 120px;
+        gap: 1.5rem;
+      }
+    }
+    @media (max-width: 936px) {
+      padding:0;
+      .gallery-cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 100px;
+      }
+    }
+  }
+</style>

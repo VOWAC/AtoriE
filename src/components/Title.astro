@@ -1,0 +1,22 @@
+---
+export interface Props {
+  title: string;
+  color: string;
+}
+
+const { title, color } = Astro.props;
+---
+
+
+<p style={`color: ${color};`}>
+  {title}
+</p>
+
+<style>
+  p {
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    font-size: 2.5rem;
+  }
+</style>
